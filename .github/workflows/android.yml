@@ -37,7 +37,7 @@ jobs:
       - name: Sync Capacitor Android project
         run: npx cap sync android
 
-      - name: Build debug APK
+        - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug
 
