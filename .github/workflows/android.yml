@@ -2,9 +2,11 @@ name: Build AnanyaS Android APK
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -37,9 +39,11 @@ jobs:
       - name: Sync Capacitor Android project
         run: npx cap sync android
 
-        - name: Build debug APK
+      - name: Build debug APK
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
