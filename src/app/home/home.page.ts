@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { App } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 import {
   IonHeader,
   IonToolbar,
@@ -60,12 +61,17 @@ export class HomePage {
     });
   }
 
-  goToProfile() {
+  goToProfile(): void {
     this.navCtrl.navigateForward('/profile');
   }
 
-  openWallet() {
-    // You can redirect to wallet or show balance modal
+  openWallet(): void {
     alert('Zepto Cash Balance: ₹50');
+  }
+
+  exitApp(): void {
+    if (Capacitor.getPlatform() === 'android') {
+      App.exitApp();
+    }
   }
 }

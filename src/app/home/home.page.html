@@ -1,8 +1,8 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="header-toolbar">
-    <!-- Location Indicator -->
     <div class="delivery-indicator">
       <div class="time-badge">⚡ 10 MINS</div>
+
       <div class="address-row">
         <span class="location-title">Home</span>
         <span class="location-sub">H-Block, Sector 62, Noida...</span>
@@ -10,48 +10,51 @@
       </div>
     </div>
 
-    <!-- Header Action Icons: Money & Profile -->
     <ion-buttons slot="end" class="header-actions">
-      <!-- Zepto-style Money / Wallet Pill -->
       <div class="zepto-cash-pill" (click)="openWallet()">
         <ion-icon name="wallet-outline" class="wallet-icon"></ion-icon>
         <span class="cash-amount">₹50</span>
       </div>
 
-      <!-- Profile Button -->
       <ion-button class="profile-btn" (click)="goToProfile()">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
-  <!-- Sticky Search Bar -->
   <div class="search-container">
-    <ion-searchbar 
-      placeholder="Search 'milk, bread, chips'..." 
+    <ion-searchbar
+      placeholder="Search 'milk, bread, chips'..."
       search-icon="search-outline">
     </ion-searchbar>
   </div>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="dashboard-content">
-  <!-- Promo Banner Card -->
   <div class="promo-card">
     <div class="promo-text">
       <h3>FLAT ₹100 OFF</h3>
       <p>On your first 3 orders</p>
     </div>
+
     <span class="promo-tag">USE: WELCOME</span>
   </div>
 
-  <!-- Category Section -->
   <div class="section-title">Explore Categories</div>
+
   <div class="category-grid">
     <div class="cat-card" *ngFor="let cat of categories">
       <div class="icon-box" [style.background]="cat.bg">
         <ion-icon [name]="cat.icon"></ion-icon>
       </div>
+
       <span>{{ cat.title }}</span>
     </div>
+  </div>
+
+  <div class="exit-button-container">
+    <ion-button expand="block" color="danger" (click)="exitApp()">
+      Exit AnanyaS
+    </ion-button>
   </div>
 </ion-content>
