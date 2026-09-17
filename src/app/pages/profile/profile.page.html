@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="profile-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="profile-content">
+  <!-- 1. User Header: Icon, Name & Mobile -->
+  <div class="user-header">
+    <div class="avatar-wrapper">
+      <ion-icon name="person"></ion-icon>
+    </div>
+    <div class="user-details">
+      <h2>{{ userName }}</h2>
+      <p>+91 {{ phoneNumber || '9876543210' }}</p>
+    </div>
+  </div>
+
+  <!-- 2. Quick Action Grid (Icon Style) -->
+  <div class="quick-actions-card">
+    <div class="action-item" (click)="goToOrders()">
+      <div class="icon-circle">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+      </div>
+      <span>Your Orders</span>
+    </div>
+
+    <div class="action-item" (click)="goToHelp()">
+      <div class="icon-circle">
+        <ion-icon name="headset-outline"></ion-icon>
+      </div>
+      <span>Help & Support</span>
+    </div>
+
+    <div class="action-item" (click)="goToWishlist()">
+      <div class="icon-circle">
+        <ion-icon name="heart-outline"></ion-icon>
+      </div>
+      <span>Your Wishlist</span>
+    </div>
+  </div>
+
+  <!-- 3. Zepto Cash & Gift Balance Card -->
+  <div class="wallet-card">
+    <div class="wallet-info">
+      <div class="wallet-title-row">
+        <ion-icon name="wallet-outline" class="wallet-icon"></ion-icon>
+        <span class="wallet-title">Zepto Cash & Gift Card</span>
+      </div>
+      <div class="balance-amount">
+        <span class="currency">₹</span>{{ walletBalance.toFixed(2) }}
+      </div>
+      <span class="sub-label">Available Balance</span>
+    </div>
+
+    <ion-button class="add-balance-btn" (click)="addBalance()">
+      + Add Balance
+    </ion-button>
+  </div>
+
+  <!-- 4. Your Information Section -->
+  <div class="section-title">YOUR INFORMATION</div>
+  <div class="info-group">
+    <div class="info-item" (click)="openAddresses()">
+      <div class="item-left">
+        <ion-icon name="location-outline" class="item-icon"></ion-icon>
+        <span>Saved Addresses</span>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+    </div>
+
+    <div class="info-item" (click)="openPayments()">
+      <div class="item-left">
+        <ion-icon name="card-outline" class="item-icon"></ion-icon>
+        <span>Payment Settings</span>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+    </div>
+
+    <div class="info-item" (click)="openNotifications()">
+      <div class="item-left">
+        <ion-icon name="notifications-outline" class="item-icon"></ion-icon>
+        <span>Notification Preferences</span>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+    </div>
+
+    <div class="info-item" (click)="openAbout()">
+      <div class="item-left">
+        <ion-icon name="information-circle-outline" class="item-icon"></ion-icon>
+        <span>About Zepto</span>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+    </div>
+  </div>
+
+  <!-- 5. Logout -->
+  <div class="logout-wrapper">
+    <ion-button expand="block" fill="outline" class="logout-btn" (click)="logout()">
+      Log Out
+    </ion-button>
+  </div>
+</ion-content>

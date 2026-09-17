@@ -1,0 +1,30 @@
+<ion-content class="intro-content" [fullscreen]="true">
+  <!-- Centered Animated Hero / Splash -->
+  <div class="brand-hero" [class.shrink]="showLogin">
+    <div class="logo-wrapper animate-pop">
+      <h1 class="brand-name">zepto</h1>
+      <span class="delivery-badge">10 MINS</span>
+    </div>
+    <p class="tagline">Groceries delivered in 10 minutes</p>
+  </div>
+
+  <!-- Bottom Sheet: Revealed only if not logged in -->
+  <div class="bottom-sheet" *ngIf="showLogin">
+    <h2>Groceries & Essentials</h2>
+    <p class="sub-text">Enter your mobile number to get started</p>
+
+    <div class="input-container">
+      <span class="country-prefix">+91</span>
+      <input 
+        type="tel" 
+        [(ngModel)]="phoneNumber" 
+        placeholder="Enter Mobile Number" 
+        maxlength="10" 
+      />
+    </div>
+
+    <ion-button expand="block" class="primary-btn" (click)="handleLogin()">
+      Continue
+    </ion-button>
+  </div>
+</ion-content>
