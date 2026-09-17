@@ -46,8 +46,24 @@ jobs:
           ./gradlew assembleDebug
 
       - name: Upload APK artifact
+        id: upload_apk
         uses: actions/upload-artifact@v4
         with:
           name: AnanyaS-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Add APK QR code to workflow summary
+        env:
+          APK_ARTIFACT_URL: ${{ steps.upload_apk.outputs.artifact-url }}
+        run: |
+          ENCODED_URL=$(python3 -c "import os, urllib.parse; print(urllib.parse.quote(os.environ['APK_ARTIFACT_URL'], safe=''))")
+          QR_CODE_URL="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${ENCODED_URL}"
+
+          echo "## Download AnanyaS Android App" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Scan this QR code with your mobile phone to open the APK artifact download page:" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "[![Download AnanyaS APK](${QR_CODE_URL})](${APK_ARTIFACT_URL})" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download AnanyaS Debug APK](${APK_ARTIFACT_URL})" >> "$GITHUB_STEP_SUMMARY"
